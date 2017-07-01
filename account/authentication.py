@@ -16,14 +16,14 @@ logger = logging.getLogger('django')
 
 class GluuOAuth2Backend(BaseOAuth2):
 
-    name = 'gluu'
+    name = 'gluu_kateka'
 
     AUTHORIZATION_URL = 'https://idp.gluu.org/oxauth/seam/resource/restv1/oxauth/authorize'
     ACCESS_TOKEN_URL = 'https://idp.gluu.org/oxauth/seam/resource/restv1/oxauth/token'
 
     RESPONSE_TYPE = 'code'
     REDIRECT_STATE = False
-    STATE_PARAMETER = True
+    STATE_PARAMETER = False
     ACCESS_TOKEN_METHOD = 'POST'
     DEFAULT_SCOPE = ['openid', 'email', 'profile', 'user_name', 'clientinfo']
 
@@ -32,7 +32,7 @@ class GluuOAuth2Backend(BaseOAuth2):
         ('expires_in', 'expires'),
         ('id_token', 'id_token', True),
         ('session_state', 'session_state', True),
-        ('access_type', 'access_type', True)
+        ('access_type', 'access_type', False)
     ]
 
     def get_user_id(self, details, response):
