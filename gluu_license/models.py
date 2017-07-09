@@ -44,7 +44,7 @@ class License(models.Model):
 
     creation_date = models.DateTimeField()
 
-    expiration_date = models.DateTimeField()
+    expire_date = models.DateTimeField()
 
     def __str__(self):
         return self.license_id
@@ -52,7 +52,7 @@ class License(models.Model):
 
 class LicenseRecord(models.Model):
 
-    license = models.ForeignKey(License, related_name='records')
+    license_key = models.ForeignKey(License, related_name='records')
 
     created = models.DateTimeField(auto_now_add=True)
 
